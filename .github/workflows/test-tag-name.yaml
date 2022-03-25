@@ -8,13 +8,9 @@ on:
 name: Testing tag
 
 jobs:
-  build:
+  tag:
     name: Test and build
     runs-on: ubuntu-latest    
-  release:
-    needs: build
-    name: Create GH Release
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
