@@ -20,6 +20,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.base_ref }}
-          release_name: Release ${{ github.base_ref }}
+          tag_name: ${{ github.head_ref }}
+          release_name: Release ${{ github.head_ref }}
           draft: false
