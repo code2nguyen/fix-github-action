@@ -1,0 +1,26 @@
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+    types: [closed]
+   
+name: Testing tag
+
+jobs:
+  release:
+    needs: build
+    name: Create GH Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.base_ref }}
+          release_name: Release ${{ github.base_ref }}
+          draft: false
